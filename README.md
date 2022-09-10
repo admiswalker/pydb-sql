@@ -1,9 +1,14 @@
-# pydb-sql
+# PyDB-SQL
 
-PyDB-SQL では，Python から SQL ベースのデータベース (ここでは MySQL) を操作し，データ管理する．
+このリポジトリでは，Python から SQL ベースのデータベース (ここでは MySQL を想定) を操作し，
+データ管理するための Python ライブラリを開発する．
 
-## server
-### コンテナの取り扱い
+## 開発環境の操作
+
+### MySQL Server
+
+MySQL Server コンテナの取り扱い
+
 - 起動
   ```
   ./docker_srv/docker_run_mysql.sh
@@ -18,7 +23,8 @@ PyDB-SQL では，Python から SQL ベースのデータベース (ここでは
   docker rm -f <CONTAINER ID>
   ```
 
-## client
+### MySQL Server Client
+
 起動したコンテナは様々なアプリケーションから接続できる．
 例えば，GUI アプリなら MySQL Workbench，
 コマンドラインなら mysql-client，
@@ -40,5 +46,3 @@ PyDB-SQL では，Python から SQL ベースのデータベース (ここでは
     pass: testpass
     port: 3306
     ```
-
-
