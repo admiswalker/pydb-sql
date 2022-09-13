@@ -46,3 +46,21 @@ MySQL Server コンテナの取り扱い
     pass: testpass
     port: 3306
     ```
+
+### Python 環境
+
+#### 初期化
+- docker のビルド
+  ```bash
+  ./docker/build.sh
+  ```
+
+#### 使い方
+- テストの実行
+  ```bash
+  ./run_test.sh
+  ```
+- 特定のテストだけ実行
+  ```bash
+  ./run_test.sh test/test_xxx.py
+  ```
