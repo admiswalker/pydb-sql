@@ -3,6 +3,10 @@
 このリポジトリでは，Python から SQL ベースのデータベース (ここでは MySQL を想定) を操作し，
 データ管理するための Python ライブラリを開発する．
 
+## 構成
+
+![](./doc/class_diagram.png)
+
 ## 開発環境の操作
 
 ### MySQL Server

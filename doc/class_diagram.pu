@@ -1,0 +1,30 @@
+@startuml pydbsql
+title PyDB-SQL Class Diagram
+
+class "UserFunctionsModule" as UserMod {
+    create()
+    read()
+    update()
+    delete()
+}
+
+class "BaseFunctionsModule" as BaseMod {
+    create()
+    read()
+    update()
+    delete()
+}
+
+class "SQLQueryModule" as SQLMod {
+}
+class "ParserModule" as ParserMod {
+}
+class "ObjectDataHandingModule" as ODHMod {
+}
+
+UserMod --> BaseMod
+BaseMod --> SQLMod
+BaseMod --> ParserMod
+BaseMod --> ODHMod
+
+@enduml
