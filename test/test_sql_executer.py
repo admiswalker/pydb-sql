@@ -4,13 +4,18 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..')) # same as a below
 #sys.path.append('test/..')
 
 import unittest
-import pydb_sql.sql_executer as pl
+import pydb_sql.sql_executer as pydb
 
-class TestPlus(unittest.TestCase):
-    def test_plus_a_b(self):
-        expected = 3
-        actual = pl.plus_a_b(1, 2)
-        self.assertEqual(expected, actual)
+class Test_sql_excutor(unittest.TestCase):
+    def test_connect(self):
+        host='127.0.0.1'
+        port='3306'
+        user='root'
+        password='rootpass'
+        database='test'
+        pd=pydb.sql_excutor()
+        pd.connect(host, port, user, password, database)
+        self.assertEqual(True, pd.is_connected())
 
 if __name__ == '__main__':
     unittest.main()

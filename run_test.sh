@@ -11,5 +11,6 @@ fi
 docker run \
        -u `id -u`:`id -g` \
        --rm -it --name docker_pydb_sql \
+       --network host \
        -v $PWD:/home -w /home \
        docker_pydb_sql:latest python3.10 ${TARGET}
