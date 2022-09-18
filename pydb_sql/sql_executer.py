@@ -1,3 +1,4 @@
+import sys
 import mysql.connector as mydb
 
 class sql_excutor:
@@ -18,7 +19,7 @@ class sql_excutor:
                 database=database_in
             )
         except Exception as err:
-            print('sql_excutor: connect() is failed:', err)
+            print('sql_excutor: connect() is failed:', err, file=sys.stderr)
             return False
         
         self.conn.ping(reconnect=True)
@@ -28,7 +29,7 @@ class sql_excutor:
         try:
             res = self.conn.is_connected()
         except Exception as err:
-            print('sql_excutor: is_connected() is failed:', err)
+            print('sql_excutor: is_connected() is failed:', err, file=sys.stderr)
             return False
         
         return res
@@ -40,7 +41,7 @@ class sql_excutor:
             cur.execute(query)
             res = cur.fetchall()
         except Exception as e:
-            print('[Table Create Error]', e)
+            print('[Table Create Error]', e, file=sys.stderr)
             return False, res
         
         return True, res
