@@ -1,2 +1,3 @@
 pytest
+pyyaml
 mysql-connector-python

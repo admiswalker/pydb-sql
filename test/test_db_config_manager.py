@@ -4,22 +4,16 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..')) # same as a below
 #sys.path.append('test/..')
 
-import pydb_sql.sql_executer as pydb
+import pydb_sql.db_config_manager as dcm
 
-class Test_sql_excutor():
-
-    def test_connect_Ture(self, capfd):
-        host='127.0.0.1'
-        port='3306'
-        user='root'
-        password='rootpass'
-        database='test'
-        pd=pydb.sql_excutor()
-        res = pd.connect(host, port, user, password, database) # test this line
-        assert(res==True)
-        assert(pd.is_connected()==True) # test this line
+class Test_db_config_manager():
 
     def test_connect_False(self, capfd):
+        dcm.get_db_config()
+        out, err = capfd.readouterr()
+        print(out)
+        print(err)
+        '''
         host='127.0.0.1'
         port='3306'
         user='not_existing_user'
@@ -33,9 +27,8 @@ class Test_sql_excutor():
         assert(res==False)
         assert(pd.is_connected()==False) # test this line
         out, err = capfd.readouterr()
+        '''
 
     def test_excute_sql(self):
-        pass        
+        pass
 
-if __name__ == '__main__':
-    unittest.main()
