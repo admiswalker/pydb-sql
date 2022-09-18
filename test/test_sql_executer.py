@@ -8,7 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..')) # same as a below
 import pydb_sql.sql_executer as pydb
 
 class Test_sql_excutor():
-    """
+
     def test_connect_Ture(self, capfd):
         host='127.0.0.1'
         port='3306'
@@ -20,7 +20,6 @@ class Test_sql_excutor():
         assert(res==True)
         assert(pd.is_connected()==True) # test this line
 
-    """
     def test_connect_False(self, capfd):
         host='127.0.0.1'
         port='3306'
