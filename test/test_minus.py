@@ -11,6 +11,3 @@ class TestMinus(unittest.TestCase):
         expected = -1
         actual = ms.minus_a_b(1, 2)
         self.assertEqual(expected, actual)
-
-if __name__ == '__main__':
-    unittest.main()

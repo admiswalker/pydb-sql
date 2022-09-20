@@ -11,6 +11,3 @@ class TestPlus(unittest.TestCase):
         expected = 3
         actual = pl.plus_a_b(1, 2)
         self.assertEqual(expected, actual)
-
-if __name__ == '__main__':
-    unittest.main()

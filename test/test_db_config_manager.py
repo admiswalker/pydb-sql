@@ -6,31 +6,16 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..')) # same as a below
 
 from pydb_sql.db_config_manager import db_config_manager as dcm
 
+import test_config as TC
+
 class Test_db_config_manager():
 
-    def test_get_db_config(self, capfd):
-        yml_path = './db_config.yml'
-        print(yml_path)
-        dcm.get_db_config(yml_path)
-        out, err = capfd.readouterr()
-        print(out)
-        print(err)
-        '''
-        host='127.0.0.1'
-        port='3306'
-        user='not_existing_user'
-        password='not_existing_user_pass'
-        database='test'
-        pd = pydb.sql_excutor()
+    def test_get_db_config(self):
+        host, port, user, password, database = dcm.get_db_config(TC.YAML_PATH) # test this line
         
-        res = pd.connect(host, port, user, password, database) # test this line
-        out, err = capfd.readouterr()
-        
-        assert(res==False)
-        assert(pd.is_connected()==False) # test this line
-        out, err = capfd.readouterr()
-        '''
-
-    def test_excute_sql(self):
-        pass
+        assert(host=='127.0.0.1')
+        assert(port=='3306')
+        assert(user=='root')
+        assert(password=='rootpass')
+        assert(database=='test')
 
