@@ -35,14 +35,15 @@ class sql_excutor:
         return res
 
     def excute(self, query):
+
         cur = self.conn.cursor()
         
         try:
             cur.execute(query)
             res = cur.fetchall()
-        except Exception as e:
-            print('[Table Create Error]', e, file=sys.stderr)
-            return False, res
+        except Exception as err_msg:
+            print('[Table Create Error]', err_msg, file=sys.stderr)
+            return False, str(err_msg) # convert 'mysql.connector.errors.ProgrammingError' type to str() type
         
         return True, res
 

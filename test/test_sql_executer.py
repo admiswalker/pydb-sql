@@ -8,6 +8,7 @@ from pydb_sql.db_config_manager import db_config_manager as dcm
 import test_config as TC
 
 import pydb_sql.sql_executer as pydb
+import pydb_sql.compare_structured_str as cmpss
 
 
 class Test_sql_excutor():
@@ -36,18 +37,24 @@ class Test_sql_excutor():
 
     def test_excute_sql_S(self):
         host, port, user, password, database = dcm.get_db_config(TC.YAML_PATH)
-        
         pd=pydb.sql_excutor()
-        pd.connect(host, port, user, password, database) # test this line
-        tf, ret = pd.excute(query='show databases;')
-        assert(tf==True)
-        #assert(ret.find('information_schema'))
-        #assert(ret.find('mysql'))
-        #assert(ret.find('performance_schema'))
-        #assert(ret.find('sys'))
+        pd.connect(host, port, user, password, database)
         
-        print(tf)
-        print(ret)
-        print(type(ret))
-        print(type(ret[0]))
+        tf, ret = pd.excute(query='show databases;') # test this line
+        
+        assert(tf==True)
+        assert(cmpss.contain(ret, 'information_schema'))
+        assert(cmpss.contain(ret, 'mysql'))
+        assert(cmpss.contain(ret, 'performance_schema'))
+        assert(cmpss.contain(ret, 'sys'))
+
+    def test_excute_sql_F(self):
+        host, port, user, password, database = dcm.get_db_config(TC.YAML_PATH)
+        pd=pydb.sql_excutor()
+        pd.connect(host, port, user, password, database)
+        
+        tf, ret = pd.excute(query='illegal query;') # test this line
+        
+        assert(tf==False)
+        assert(cmpss.contain(ret, 'You have an error in your SQL syntax;'))
 
