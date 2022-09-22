@@ -48,12 +48,13 @@ class Test_sql_excutor():
         assert(cmpss.contain(ret, 'performance_schema'))
         assert(cmpss.contain(ret, 'sys'))
 
-    def test_excute_sql_F(self):
+    def test_excute_sql_F(self, capfd):
         host, port, user, password, database = dcm.get_db_config(TC.YAML_PATH)
         pd=pydb.sql_excutor()
         pd.connect(host, port, user, password, database)
         
         tf, ret = pd.excute(query='illegal query;') # test this line
+        out, err = capfd.readouterr()
         
         assert(tf==False)
         assert(cmpss.contain(ret, 'You have an error in your SQL syntax;'))

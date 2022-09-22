@@ -41,8 +41,6 @@ def test_contain_case03_S():
 def test_contain_case04_S():
 
     target = "[Table Create Error] 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'illegal query' at line 1"
-    print('')
-    print(type(target))
     search_word = 'You have an error in your SQL syntax;'
     
     assert(cmpss.contain(target, search_word)) # test this line

@@ -1,6 +1,10 @@
 @startuml pydbsql
 title PyDB-SQL Class Diagram
 
+frame "Foo" as foo {
+    class "abc"
+}
+
 class "UserFunctionsModule" as UserMod {
     create()
     read()
