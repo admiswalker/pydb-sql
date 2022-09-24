@@ -8,6 +8,16 @@ else
     echo 'RUN: '${TARGET}
 fi
 
+# run SQL server on docker
+DOCKER_IMAGE_NAME='mysql'
+#DOCKER_PS=$(docker ps | grep ${DOCKER_IMAGE_NAME})
+DOCKER_NUM=$(docker ps | grep -c ${DOCKER_IMAGE_NAME})
+
+if [ ${DOCKER_NUM} -eq 0 ]; then
+   ./docker_srv/docker_run_mysql.sh
+fi
+
+# run pytest on docker
 SCRIPT_DIR=`cd $(dirname ${BASH_SOURCE:-$0}); pwd`
 DOCKER_IMAGE_NAME=`cat ${SCRIPT_DIR}/docker/docker_image_name.txt | tr -d '\r' | tr -d '\n'`
 
