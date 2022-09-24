@@ -1,15 +1,13 @@
 import pydb_sql.sql_executer as pydb
 from pydb_sql.db_config_manager import db_config_manager as dcm
+import pydb_sql.type_conversion as cnv
 
 class pydb_sql:
     def __init__(self):
-        pass
+        self.pd=''
 
     def __del__(self):
         pass
-
-    def test_func_plus(self, a, b):
-        return a + b
 
     #---
 
@@ -27,8 +25,10 @@ class pydb_sql:
     #---
     # Create
 
-    def create_db(self):
-        pass
+    def create_db(self, db_name):
+        sql_query = 'create database '+db_name
+        tf, ret = self.pd.excute(sql_query)
+        return tf, ret
 
     def create_tbl(self):
         pass
@@ -37,43 +37,53 @@ class pydb_sql:
     # Read
 
     # db
+    def db_all(self):
+        # return all data on the server
+        
+        sql_query = 'show databases;'
+        tf, ret = self.pd.excute(sql_query) # test this line
+        if tf==False:
+            return tf, ret
+        
+        ret = cnv.LT2L(ret)
+        
+        return tf, ret
+
     def db_size(self):
         pass
     
     def db_struct(self):
         pass
     
-    def get_db(self):
+    # table
+    def tbl_all(self):
         # return all data on the table
         pass
-
-    # table
+    
     def tbl_size(self):
         pass
     
     def tbl_struct(self):
         pass
 
-    def get_tbl(self):
-        # return all data on the table
-        pass
-    
     #---
     # Update
     
     #---
     # Delete
     
-    def del_db(self):
+    def rm_db(self, db_name):
+        sql_query = 'drop database '+db_name
+        tf, ret = self.pd.excute(sql_query)
+        return tf, ret
+
+    def rm_db_data(self):
         pass
 
-    def del_db_data(self):
-        pass
-
-    def del_tbl(self):
+    def rm_tbl(self):
         pass
     
-    def del_tbl_data(self):
+    def rm_tbl_data(self):
         pass
 
     #---

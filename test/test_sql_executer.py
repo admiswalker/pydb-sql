@@ -39,8 +39,9 @@ class Test_sql_excutor():
         host, port, user, password, database = dcm.get_db_config(TC.YAML_PATH)
         pd=pydb.sql_excutor()
         pd.connect(host, port, user, password, database)
-        
-        tf, ret = pd.excute(query='show databases;') # test this line
+
+        sql_query='show databases;'
+        tf, ret = pd.excute(sql_query) # test this line
         
         assert(tf==True)
         assert(cmpss.contain(ret, 'information_schema'))
@@ -52,8 +53,9 @@ class Test_sql_excutor():
         host, port, user, password, database = dcm.get_db_config(TC.YAML_PATH)
         pd=pydb.sql_excutor()
         pd.connect(host, port, user, password, database)
-        
-        tf, ret = pd.excute(query='illegal query;') # test this line
+
+        sql_query='illegal query;'
+        tf, ret = pd.excute(sql_query) # test this line
         out, err = capfd.readouterr()
         
         assert(tf==False)

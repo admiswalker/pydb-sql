@@ -34,12 +34,12 @@ class sql_excutor:
         
         return res
 
-    def excute(self, query):
+    def excute(self, sql_query):
 
         cur = self.conn.cursor()
         
         try:
-            cur.execute(query)
+            cur.execute(sql_query)
             res = cur.fetchall()
         except Exception as err_msg:
             print('[Table Create Error]', err_msg, file=sys.stderr)
