@@ -14,6 +14,7 @@ DOCKER_IMAGE_NAME='mysql'
 DOCKER_NUM=$(docker ps | grep -c ${DOCKER_IMAGE_NAME})
 
 if [ ${DOCKER_NUM} -eq 0 ]; then
+    # When the SQL server is not started
    ./docker_srv/docker_run_mysql.sh
 fi
 

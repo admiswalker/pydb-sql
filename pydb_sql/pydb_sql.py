@@ -1,3 +1,5 @@
+import pydb_sql.sql_executer as pydb
+from pydb_sql.db_config_manager import db_config_manager as dcm
 
 class pydb_sql:
     def __init__(self):
@@ -11,8 +13,16 @@ class pydb_sql:
 
     #---
 
-    def connect():
-        pass
+    def connect(self, host, port, user, password, database):
+        self.pd=pydb.sql_excutor()
+        tf = self.pd.connect(host, port, user, password, database) # test this line
+        
+        return tf
+    
+    def connect_yaml(self, yaml_path):
+        host, port, user, password, database = dcm.get_db_config(yaml_path)
+        
+        return self.connect(host, port, user, password, database)
     
     #---
     # Create

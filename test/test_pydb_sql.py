@@ -6,9 +6,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..')) # same as a below
 import unittest
 import pydb_sql.pydb_sql as pydb_sql
 
-class Test_pydb_sql(unittest.TestCase):
-    def test_test_func_plus(self):
+import test_config as TC
+
+class Test_pydb_sql():
+    
+    def test_connect_yaml(self):
         pds = pydb_sql.pydb_sql()
-        expected = 3
-        actual = pds.test_func_plus(1, 2)
-        self.assertEqual(expected, actual)
+        
+        tf = pds.connect_yaml(TC.YAML_PATH)
+        
+        assert(tf==True)
